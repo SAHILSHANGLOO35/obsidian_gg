@@ -13,9 +13,23 @@
 	2.) To translate JSX into JS, we have to give script element an attribute - "text/babel"
 	- <script type="text/babel"></script>
 
-React = external library that helps us create websites easier.
+===React = external library that helps us create websites easier.===
 
 4.) How React helps us create websites easier?
 - It's more natural
 - Find errors easily
 - We can insert JS code into our elements.
+
+5.) State
+- State is data that is connected to the HTML and we use it to save data that changes over time.
+- When we update this data, it will update the HTML
+- React.useState() returns an array -
+	1.) The current data: array[0]
+	2.) Function that updates the data: array[1]
+		And only if we use this update function in react then only react will update the HTML.
+
+==Spread Operator (...) in [[Javascript]] - It takes the original array and copies them into the new array.==
+
+===onChange = runs a function when we change the text inside an <input> element.
+
+
