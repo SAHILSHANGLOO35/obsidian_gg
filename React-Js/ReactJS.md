@@ -30,6 +30,21 @@
 
 ==Spread Operator (...) in [[Javascript]] - It takes the original array and copies them into the new array.==
 
-===onChange = runs a function when we change the text inside an <input> element.
+==onChange = runs a function when we change the text inside an <input> element.==
 
+==<body>element in CSS has a margin of 8px from all vertical and horizontal sides.==
 
+6.) Hooks
+- Hooks let us insert React features into our components.
+- useEffect :
+	- It runs some code after the component is created or updated.
+	```
+	useEffect(() => { }, [ ]);
+	[ ] = Dependancy array.
+	[ ] = empty => useEffect only runs once, after the component is created.
+	[chatMessages] => useEffect runs everytime the chatMessages changes.
+	
+	```
+- useRef :
+	- ref = basically a container wth special React features.
+	- It automatically saves an HTML element from the component.
