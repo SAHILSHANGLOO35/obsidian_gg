@@ -48,3 +48,11 @@
 - useRef :
 	- ref = basically a container wth special React features.
 	- It automatically saves an HTML element from the component.
+	- Use Cases of useRef -
+		- Accessing DOM elements.
+		- Storing mutable values
+		- Avoiding re-renders.
+
+==- Use `useState` for rendering data.==
+==- Use `useRef` for holding data that you don’t want to trigger a re-render.==
+
