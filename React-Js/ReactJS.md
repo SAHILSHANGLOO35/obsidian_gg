@@ -56,3 +56,8 @@
 ==- Use `useState` for rendering data.==
 ==- Use `useRef` for holding data that you don’t want to trigger a re-render.==
 
+==CSS Tips -==
+- By default Link elements (<a>) reload the page.
+	- This only makes sense when our code has multiple html files to go from one file to another, and so we have to reload the page.
+	- However when we use routing in SPA we don't have to reload everytime, we can just use JS to switch between pages.
+	- To do this, React Router provides us a element called (<Link />) => helps us to go to another page without reloading.
