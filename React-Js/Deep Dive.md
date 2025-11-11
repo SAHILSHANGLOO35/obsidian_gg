@@ -105,3 +105,10 @@
   `in the dependency array then useEffect will only run when this state
   `changes`.`
 
+### Advance Routing
+- useNavigate
+	- It helps us to maintain navigate history. So by clicking back button we can go the previous recent visited page.
+	- ```
+		const navigate = useNavigate()
+		navigate(-1)
+	  ```
