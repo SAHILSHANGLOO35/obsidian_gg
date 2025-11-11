@@ -94,3 +94,14 @@
 	}
   ```
 
+### useEffect
+- 
+  `useEffect(() => {}) => If no dependency array is given, then it will run everytime even if any state changes. So we avoid it.`
+  
+  `useEffect(() => {}, []) => If dependency array is empty, then it will
+  `only runs once when the component is first very first time.`
+  
+  `useEffect(() => {}, [num]) => Now if some state variable is given here
+  `in the dependency array then useEffect will only run when this state
+  `changes`.`
+
