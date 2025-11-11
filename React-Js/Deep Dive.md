@@ -95,20 +95,51 @@
   ```
 
 ### useEffect
-- 
-  `useEffect(() => {}) => If no dependency array is given, then it will run everytime even if any state changes. So we avoid it.`
-  
-  `useEffect(() => {}, []) => If dependency array is empty, then it will
-  `only runs once when the component is first very first time.`
-  
-  `useEffect(() => {}, [num]) => Now if some state variable is given here
-  `in the dependency array then useEffect will only run when this state
-  `changes`.`
+  - `useEffect(() => {}) => If no dependency array is given, then it will run everytime even if any state changes. So we avoid it.`
 
-### Advance Routing
-- useNavigate
-	- It helps us to maintain navigate history. So by clicking back button we can go the previous recent visited page.
-	- ```
-		const navigate = useNavigate()
+  - `useEffect(() => {}, []) => If dependency array is empty, then it will
+	`only runs once when the component is first very first time.`
+	
+   - `useEffect(() => {}, [num]) => Now if some state variable is given here
+	`in the dependency array then useEffect will only run when this state
+	`changes`.`
+
+
+### Need of `react-router-dom` if there was `<a />`
+- We use `react-router-dom` so navigation happens **within the React app (client-side)** - **no page reloads, smoother transitions, and preserved app state**.
+
+### `<Link></Link>` component in react
+- Think of `<Link>` like a **React version of `<a>` tag**, but it **doesn’t reload** the page.
+- Use this when -
+	- You want the **user to click** something and go to another page.  
+	- Works only **in JSX** (inside the return part).
+	
+### `useNavigate()`
+-  It helps us to maintain navigate history. So by clicking back button we can go the previous recent visited page.
+- ```
+	  	const navigate = useNavigate()
 		navigate(-1)
-	  ```
+  ```
+- Now imagine you want to go to `/dashboard` **after** login is successful - you can’t do that with a `<Link>`, because the user isn’t clicking a link.
+- Use this when -
+	- You want to **go to another page automatically**, not because of a click.  
+	- For example:
+		- After login/signup success
+		- After deleting an account
+		- After a timeout or condition
+### `<Navigate />` component
+- Sometimes, you want to redirect **immediately** if some condition is true.
+- ```
+	  {!isLoggedIn && <Navigate to="/login" />}
+  ```
+- Use this when - 
+	- You want to **redirect directly inside JSX** based on a condition (like protecting routes).
+- `<Navigate>` is faster because it skips rendering the current page and instantly switches to the target route as it doesn't wait for the component to mount first and then checks for the condition, it does this while render phase(instant). It is like don't  even show this page, go there instead.
+
+
+### Context API
+- In Context API, we need three things:
+	1.) Context - create context
+	2.) Provider - provide that context
+	3.) useContext( ) - use that context
+
