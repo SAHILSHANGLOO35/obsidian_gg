@@ -101,26 +101,27 @@ Car Object example using (...prev):
 			  });
 		  ```
 - useRef is also used for accessing DOM elements.
-		- ```
+	- ```
 			const inputElem = useRef<HTMLInputElement | null>(null);
-			const btnClicked = () => {
-			  if (inputElem.current) {
-			  console.log(inputElem.current);
-			  inputElem.current.style.backgroundColor = "blue";
-			}
-			
-		  return (
-			  <div className="flex gap-10">
-			  <input
-			  ref={inputElem}
-			  className="border pl-4"
-			  type="text"
-			  placeholder="Enter"
-			  />
-			  <button onClick={btnClicked}>Click here</button>
-			  </div>
-		  );
+				const btnClicked = () => {
+				  if (inputElem.current) {
+				  console.log(inputElem.current);
+				  inputElem.current.style.backgroundColor = "blue";
+				}
+				
+			  return (
+				  <div className="flex gap-10">
+				  <input
+				  ref={inputElem}
+				  className="border pl-4"
+				  type="text"
+				  placeholder="Enter"
+				  />
+				  <button onClick={btnClicked}>Click here</button>
+				  </div>
+			  );
 	  ```
+
 - Real-world examples:
 	- ### Digital Stop Watch
 		- What changes on screen?
@@ -129,6 +130,5 @@ Car Object example using (...prev):
 	- What do we store silently?
 		- Interval ID (used to stop/start timer)  
 		- User doesn’t see it → **useRef**
-
 ## 4.) useMemo Hook
 - 
