@@ -131,4 +131,38 @@ Car Object example using (...prev):
 		- Interval ID (used to stop/start timer)  
 		- User doesn’t see it → **useRef**
 ## 4.) useMemo Hook
-- 
+- The React useMemo Hook returns a ==memoized value==. (it's like caching a value so that it doesn't need to be recalculated.)
+- The useMemo Hook only runs when one of its dependencies gets updated. This can ==improve the performance== of the application. There is one more hook in react to improve performance, that is ==useCallback== hook.
+- The useMemo and useCallback Hooks are similar. The main difference is:
+	- useMemo returns a memoized value.
+	- useCallback returns a memoized function.
+- Simple rule to remember while using this and to differentiate between useMemo and useEffect is that - "==useMemo== decides whether to recompute a value before render using dependencies, while ==useEffect== runs after render and cannot prevent recalculations."
+- ==Simply, useEffect runs after render and useMemo runs during render==
+- Code Snippet showing use of useMemo for heavy calc:
+	- ```
+	  const [number, setNumber] = useState(0);
+	  const [count, setCount] = useState(0);
+	  
+	  function cubeNum(num: number) {
+		  console.log("Calculation done!");
+		  return Math.pow(num, 3);
+		}
+		
+		return (
+	    <>
+	      <input
+	        type="number"
+	        className="text-white border pl-2"
+	        onChange={(e) => setNumber(Number(e.target.value))}
+		        value={number
+		     />
+		     <h1 className="text-white">Cube of the number: {result}</h1>
+		     <button onClick={() => setCount(count + 1)}>Counter++</button>
+		     <h1>Counter: {count}</h1>
+	    </>
+	  );
+	  ```
+
+## 5.) useCallback Hook
+- useCallback is a React Hook that lets us ==cache== a function definition between re-renders.
+- It means, when we use useCallback Hook, it does not create multiple instance of same function when re-render happens.
