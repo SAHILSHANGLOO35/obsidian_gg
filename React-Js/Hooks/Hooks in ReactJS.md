@@ -20,12 +20,12 @@ Simply, ==Hooks== are special type of magical function use to perform some speci
 	setCount(count + 1); // 0 + 1 = 1
 	setCount(count + 1); // 0 + 1 => Still the original initial value
 	setCount(count + 1); // 0 + 1 => Still the original initial value
-	setCount(count + 1); // 0 + 1 => Still the original initial value, because-
-	
-	it is still in running state and the function has not completed yet! Hence
-	it will update the count only by 1 not by 4 as React processes the request
-	in batches for better performance and for it the count has still not
-	updated yet.
+	setCount(count + 1); // 0 + 1 => Still the original initial value,
+	because-
+		it is still in running state and the function has not completed yet
+		Hence it will update the count only by 1 not by 4 as React processes
+		the request in batches for better performance and for it the count
+		has still not updated yet.
 ```
 - Using Previous values to update new latest value
 ```
@@ -163,6 +163,118 @@ Car Object example using (...prev):
 	  );
 	  ```
 
+**==NOTE: When a parent re-renders, all children re-render by default==**
 ## 5.) useCallback Hook
-- useCallback is a React Hook that lets us ==cache== a function definition between re-renders.
+- useCallback is a React Hook that lets us ==cache a function definition== between re-renders.
 - It means, when we use useCallback Hook, it does not create multiple instance of same function when re-render happens.
+- **Referential Equality in React**:
+	- It refers to whether two variables, specifically non-primitive values like **objects, arrays, and functions**, point to the **exact same location in memory.**
+	- For example - In the following example, there are two functions which are returning the same statement, but when we check ***fn1 === fn2***, it's false - because both functions are created on different memory locations, so these aare not same functions and hence giving false.
+		- ```
+			const fn1 = () => return "Hello";
+			const fn2 = () => return "Hello";
+		  ```
+- So, When we re-render the following component with the newfn prop, React is thinking of it as a different function and creating new instance of it every time and so the  new function as a prop every time, hence re-rendering the ==<Header /> component== again.
+	- ```
+		  "use client";
+		  import { useState } from "react";
+		  import Header from "../components/header";
+		  
+		  export const UseCallback = () => {
+		  const [count, setCount] = useState(0);
+		  
+		  const newfn = () => {};
+		  return (
+			  <>
+				  <Header newfn={newfn} />
+				  <h1 className="text-4xl font-semibold">{count}</h1>
+				  <button
+					  onClick={() => setCount((prevCount) => prevCount + 1)}
+					  className="border px-3 py-1 rounded-md cursor-pointer
+					  active:scale-90 transition duration-200"
+				  >
+					  Click here
+				  </button>
+			  </>
+			);
+		};
+	  ```
+- **Solution -** Therefore, We can solve this by using ==useCallback Hook== which caches the function in memory and uses that only preventing re-rendering of the ==<Header /> component== as shown below:
+	- ```
+		  "use client";
+		  import { useCallback, useState } from "react";
+		  import Header from "../components/header";
+		  
+		  export const UseCallback = () => {
+		  const [count, setCount] = useState(0);
+		  
+		  const newfn = useCallback(() => {}, []);
+		  
+		  return (
+			  <>
+				  <Header newfn={newfn} />
+				  <h1 className="text-4xl font-semibold">{count}</h1>
+				  <button
+					  onClick={() => setCount((prevCount) => prevCount + 1)}
+					  className="border px-3 py-1 rounded-md cursor-pointer
+					  active:scale-90 transition duration-200"
+				  >
+					  Click here
+				  </button>
+			  </>
+			);
+		};
+	  ```
+- To create new function (when dependencies change), we use dependency array: 
+	- **caching the function but creating the new function when the count changes by passing the dependency.**
+		- ```
+			const newfn = useCallback(() => {
+				console.log(count);
+			}, [count]);
+		  ```
+
+## 6.) useContext Hook
+- useContext is a React Hook that allows us to access data from any component without explicitly passing it down through props at every level.
+- Simply, useContext is used to manage Global Data in React App.
+- We can use useContext Hook in 3 steps:
+	- 1.) Creating the Context
+		- ```
+			  "use client";
+			  import React, { createContext } from "react";
+			  
+			  // 1.) Creating the Context
+			  export const AppContext = createContext<string | undefined
+			  (undefined);
+		  ```
+	- 2.) Providing the Context
+		- ```
+			  // 2.) Providing the context
+			  export const ContextProvider = ({children}:
+			  {children:React.ReactNode}) => {
+				  const phone = "+91 6006";
+				  return <AppContext.Provider value={phone}>{children
+				  </AppContext.Provider>;
+				  };
+		  ```
+	- 3.) Consuming the Context.
+		- ```
+			  "use client";
+			  import { useContext } from "react";
+			  import { AppContext } from "../context/appContext";
+			  
+			  export const Footer = () => {
+				  // 3.) Consuming the Context
+				  const phone = useContext(AppContext);
+				  return (
+					  <>
+						  <div>Footer</div>
+						  <h3>Phone: {phone}</h3>
+					  </>
+				  );
+			  };
+		  ```
+- The image shows the prop drilling from top level APP > ["Footer", ["Profile" > "Contact"]] ![[Pasted image 20260108011436.png]]
+- The most common use of Context API is: 
+	- To share current theme of our App,
+	- To share the authenticated user,
+	- To share the result of an API call with all of its components in our App.
