@@ -278,3 +278,6 @@ Car Object example using (...prev):
 	- To share current theme of our App,
 	- To share the authenticated user,
 	- To share the result of an API call with all of its components in our App.
+
+## 7.) useReducer Hook
+- 
