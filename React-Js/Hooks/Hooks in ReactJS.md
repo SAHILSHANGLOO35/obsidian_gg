@@ -12,44 +12,45 @@ Simply, ==Hooks== are special type of magical function use to perform some speci
 	- improves the readability,
 	- reusability and
 	- overall performance of the application.
-	
+
+
 ## 1.) useState Hook
 - useState is a react hook, which creates a "state variable" which helps us to track state in components and updates the user interface when state changes.
 - ==Batching in React==
- ```
-	setCount(count + 1); // 0 + 1 = 1
-	setCount(count + 1); // 0 + 1 => Still the original initial value
-	setCount(count + 1); // 0 + 1 => Still the original initial value
-	setCount(count + 1); // 0 + 1 => Still the original initial value,
-	because-
-		it is still in running state and the function has not completed yet
-		Hence it will update the count only by 1 not by 4 as React processes
-		the request in batches for better performance and for it the count
-		has still not updated yet.
-```
-- Using Previous values to update new latest value
-```
-Car Object example using (...prev):
-
-  const [car, setCar] = useState({
-    brand: "Ferrari",
-    model: "Roma",
-    year: "2025",
-    color: "Red",
-  });
-
-  const changeColor = () => {
-    if (car.color === "Red") {
-      setCar((prev) => {
-        return { ...prev, color: "Blue" };
-      });
-    } else {
-      setCar((car) => {
-        return { ...car, color: "Red" };
-      });
-    }
-  };
-```
+	```
+		setCount(count + 1); // 0 + 1 = 1
+		setCount(count + 1); // 0 + 1 => Still the original initial value
+		setCount(count + 1); // 0 + 1 => Still the original initial value
+		setCount(count + 1); // 0 + 1 => Still the original initial value,
+		because-
+			it is still in running state and the function has not completed yet
+			Hence it will update the count only by 1 not by 4 as React processes
+			the request in batches for better performance and for it the count
+			has still not updated yet.
+			
+		Using Previous values to update new latest value
+	  
+		Car Object example using (...prev):
+		
+		  const [car, setCar] = useState({
+		    brand: "Ferrari",
+		    model: "Roma",
+		    year: "2025",
+		    color: "Red",
+		  });
+		
+		  const changeColor = () => {
+		    if (car.color === "Red") {
+		      setCar((prev) => {
+		        return { ...prev, color: "Blue" };
+		      });
+		    } else {
+		      setCar((car) => {
+		        return { ...car, color: "Red" };
+		      });
+		    }
+		};
+	```
 
 ## 2.) useEffect Hook
 - The useEffect Hook allows us to perform side effects in our components.
