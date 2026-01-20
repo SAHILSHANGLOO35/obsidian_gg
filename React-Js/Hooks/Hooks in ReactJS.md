@@ -280,4 +280,45 @@ Car Object example using (...prev):
 	- To share the result of an API call with all of its components in our App.
 
 ## 7.) useReducer Hook
-- 
+- useReducer is similar to useState, but instead of providing state & setter function it provides state & dispatch function.
+- The useReducer Hook accepts two arguments
+	- Reducer function - It specifies how the state gets updated.
+	- Initial state
+	 and returns: Current state and Dispatch method.
+- When we use the useState Hook, we directly update the state using the setter function, but when we use the useReducer Hook, we can efficiently update the state variable for different actions.
+- Code Snippet -
+	- ```
+		  export const UseReducer = () => {
+		  const initialState = { count: 0 };
+		  const reducer = (state: State, action: Action) => {
+			  switch (action.type) {
+				  case "increase": {
+					  return { count: state.count + 1 };
+				  }
+				  case "decrease": {
+			        return { count: state.count - 1 };
+		          }
+		          case "input": {
+			          return { count: action.payload };
+			      }
+			      default: {
+				      return state;
+				  }
+			}
+		};
+	
+		  const [state, dispatch] = useReducer(reducer, initialState);
+	  ```
+
+## 8.) uselayoutEffect Hook
+- useLayoutEffect works similarly to useEffect, but it is called before the User Interface (UI) gets mounted.
+- Simply, **useEffect** gets called after printing the DOM elements whereas **useLayoutEffect** gets called before printing the DOM elements.
+- We can use **useLayoutEffect** for:
+	- measuring DOM elements,
+	- for animating elements to fix the flickering issue,
+	- API calling
+- But React document says using useLayoutEffect can hurt the performance of the App that's why it is recommended to use useEffect Hook wherever possible.
+
+## 9.) Custom Hook
+- React allows us to create our own Hooks which is known as custom hook.
+- For example: We have a component logic that needs to be used by multiple components, so we can extract that logic to create a custom hook.
