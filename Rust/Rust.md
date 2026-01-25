@@ -23,6 +23,7 @@
 		- Race conditions
 	- Rust prevents these **at compile time**, not runtime.
 - ## Variables (nums, strings, bools)
+	- All variables in rust are immutable by default. To make them mutable we have to make them explicitly mutable if we want to change the values.
 	- `main.rs` is the entry point file of a Rust application. 
 	- This is the code snippet to **check whether a number is even or not** -
 		- ```
