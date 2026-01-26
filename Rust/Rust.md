@@ -45,11 +45,44 @@
 	  - `Garbage Collector` is slow as this is a whole separate process that decides what to garbage collect and deallocate from memory and so on.
 	  - Therefore, **not having** a `garbage collector` is one of the key reasons **Rust is so fast.**
 	  - It achieves this using the -
-		  - 1.) Mutability
-		  - 2.) Heaps and Stack --> common way to store in memory
-		  - 3.) Ownership model
-		  - 4.) Borrowing and references
-		  - 5.) Lifetimes
+		  - **1.)** **Mutability**
+		  - **2.)** **Heaps and Stack** --> common way to store in memory
+		  - **3.)** **Ownership model** --> *Ownership* is a set of rules that govern how a Rust program manages *memory*.
+			  - In Rust, if we create data on the **heap** (like `String`), it will always have its **owner on the stack**. If that owner variable on the stack gets popped or goes out of scope, the heap data also gets removed with it.
+			  - ![[Pasted image 20260126171807.png]]
+			  - Now if we make another variable in Stack pointing to the same data in the Heap then Rust says original variable becomes invalid and now the new variable is the owner of the data in the Heap.
+			  - Now, taking ==Rihanna== as an example: Rihanna wants to be with one boyfriend at a time. If her boyfriend dies, she also dies. But if, before her boyfriend is about to die, she commits to another guy, then she will survive and also get a new boyfriend.
+			  - *This is Ownership and memory safety in Rust.*
+		  - **4.)** **Borrowing and references**
+			  - We can transfer `ownerships` of variables to fns. By passing a **reference** of the string to the function `take_ownership`, the ownership of of the string remains with the original variable, in the `main` function. This allows us to use that variable again after the function call.
+			  - Code snippet of ==Borrowing Variable==:
+				  - ```
+					    fn main() {
+						    let my_string = String::from("Hello World");
+						    borrow_variable(&my_string); // Pass a reference
+						    // to `my_string`
+						    println!("{}", my_string);
+					    }
+					    
+					    fn borrow_variable(some_string: &String) {
+						    println!("{}", some_string); // `some_string` is
+						    borrowed and not moved.
+					    }
+				    ```
+			-  **Mutable references**
+				- ```
+					  let mut s1: String = String::from("Hello");
+					  let s2: &mut String = &mut s1;
+					  // update_word(&mut s1); // Cannot be borrowed by the
+					  update_word function as it is already a 
+					  reference once in the above line {s2}
+					  
+					  println!("{}", s1);
+					  println!("{}", s2);
+					  
+					  fn update_word() {}
+				  ```
+		  - 5.) **Lifetimes**
 - ## Structs
 	- Structs let us structure data together like we do in c++.
 	- ```
@@ -134,4 +167,29 @@
 		  ```
 	- ## Default Enums by Rust - (Options/Result)
 		- The ==Option enum== lets us return either **Some** value or **None** value.
-		- 
+		- The option enum was introduced in Rust to handle the concept of nullability in a safe and expressive way.
+		- Rust doesn't have null.
+		-  ```
+			  pub enum Option<T> {
+				  None,
+				  Some(T)
+			  }
+		  ```
+	- ## Error handling using Result
+		- Different languages have different ways to handle error.
+		- JavaScript, for example, has the concept of `try-catch` block.
+		- Example using Code snippet - The `example.txt` does not exists, therefore the function without panicking or without throwing any error prints us the error statement without any error in the code just like `try-catch` in JS.
+			- ```
+				  fn main() {
+					  let res = fs::read_to_string("example.txt");
+					  match res {
+						  Ok(content) => {
+							  println!("File content: {}", content);
+						  }
+						  Err(err) => {
+				            println!("Error: {}", err);
+			            }
+					}
+				}
+			  ```
+- ## New topic
