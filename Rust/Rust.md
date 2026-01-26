@@ -38,6 +38,18 @@
 				  return false;
 			  }
 		  ```
+- ## Memory Management in Rust
+	- Whenever we run a program (C++, Rust, JS), it `allocates` and `deallocates` memory on the RAM.
+	- ![[Pasted image 20260126100127.png]]
+	  - Memory management is a crucial aspect of programming in Rust, designed to ensure safety and efficiency **without the need for a garbage collector**.
+	  - `Garbage Collector` is slow as this is a whole separate process that decides what to garbage collect and deallocate from memory and so on.
+	  - Therefore, **not having** a `garbage collector` is one of the key reasons **Rust is so fast.**
+	  - It achieves this using the -
+		  - 1.) Mutability
+		  - 2.) Heaps and Stack --> common way to store in memory
+		  - 3.) Ownership model
+		  - 4.) Borrowing and references
+		  - 5.) Lifetimes
 - ## Structs
 	- Structs let us structure data together like we do in c++.
 	- ```
