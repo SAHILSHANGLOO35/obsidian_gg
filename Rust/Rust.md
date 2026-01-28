@@ -192,4 +192,75 @@
 					}
 				}
 			  ```
-- ## New topic
+- ## Collections
+	- Rust's standard library includes a number of very useful data structures called **collections**.
+	- Most data types represents one specific value, but collections can contain multiple values, the data these collections point to is **stored on the heap**.
+	- ### 1.) Vectors
+		- Vectors allow us to store more than one value in a single data structure that puts all the values next to each other in memory.
+		- ```
+			  fn main() {
+				  let mut vec = Vec::new();
+				  vec.push(1);
+				  vec.push(2);
+				  vec.push(3);
+				  
+				  println!("{:?}", vec);
+			  }
+		  ```
+		- Initializing using ==Rust macros== - This `vec!` will create a fresh vector first and then pushes these values into it.
+			- ```
+				  fn main() {
+					  let numbers = vec![1, 2, 3];
+					  for i in numbers {
+						  println!("{}", i);
+					  }
+				  }
+			  ```
+	- ### 2.) Hashmaps
+		- Hashmaps store a key-value pair in Rust. Similar to objects in JS, Dict in Python and Hashmaps in Java, Maps in C++.
+		- ```
+			  let mut users: HashMap<String, u32> = HashMap::new();
+			  users.insert(String::from("Sahil'), 22);
+			  users.insert(String::from("Karan"), 21);
+		  ```
+- ## Iterators
+	- `.iter()` method -> ==immutable iterator== -> immutable reference for iterating over the values via an iterator.
+		- The `iter()` method in Rust provides a way to iterate over the elements of a collection by **borrowing** them.
+	- `.iter()`, `.iter_mut()` basically returns us an **iterator**. And all iterators have `.next()`.
+		- ```
+			  fn main() {
+				  let mut v1 = vec![1, 2, 3];
+				  
+				  for val in v1_iter {
+					  println!("{}", val);
+				  }
+			  }
+		  ```
+	- `.iter_mut` method -> ==mutable iterator== -> mutable reference to mutate values via an iterator.
+		- ```
+			  fn main() {
+				  let mut v1 = vec![1, 2, 3];
+				  let v1_iter = v1.iter_mut(); // Type IterMut
+				  
+				  for val in v1_iter {
+					  *val = *val + 1;
+				  }
+				  
+				  println!("{:?}", v1);
+			  }
+		  ```
+	- `.next()` -> To call the .next(), the iterator itself must be mutable.
+	- `.next()` takes a mutable reference to the iterator and returns an `Option<Item>`
+		- So, What must be **mutable**? -
+			- ❌ NOT the collection  
+			- ❌ NOT the values  
+			- ✅ **The iterator variable**
+	- `.intoIter()` -> Used to convert a collection into an iterator that takes ***ownership*** of the collection.
+		- **Useful when:**
+			- 1.) We no longer need the original collection.
+			- 2.) When we need to squeeze performance benefits by transferring ownership (avoiding references).
+	- ![[Pasted image 20260128095935.png]]
+	- **Iterators** also give us some benefits like some methods (eg-.sum()).
+		- Some methods are called as **Consuming Adapters**(a function that ends up consuming the iterators i.e. taking up the ownership by that `sum fn`).
+		- Others are called as **Iterator Adapters**.
+- ## 
