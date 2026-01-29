@@ -260,7 +260,14 @@
 			- 1.) We no longer need the original collection.
 			- 2.) When we need to squeeze performance benefits by transferring ownership (avoiding references).
 	- ![[Pasted image 20260128095935.png]]
-	- **Iterators** also give us some benefits like some methods (eg-.sum()).
-		- Some methods are called as **Consuming Adapters**(a function that ends up consuming the iterators i.e. taking up the ownership by that `sum fn`).
-		- Others are called as **Iterator Adapters**.
-- ## 
+	- **Iterators** also give us some benefits like some methods (eg-.sum(), map()).
+		- Some methods are called as **Consuming Adapters** eg - `sum()` - (a function that ends up consuming the iterators i.e. taking up the ownership by that `sum fn`).
+		- Others are called as **Iterator Adapters** eg - `map()` - (are methods defined on the Iterator Trait that don't consume the iterator. Instead, they ==produce different iterators== by changing some aspect of the original iterator.)
+	- ### `.collect()`
+		- is used to convert the iterator back to vector.
+		- ```
+			  let v1_filter: Vec<i32> = v1_iter.filter(|x| *x % 2 !=
+			  0).map(|x| x * 2).collect();
+		  ```
+- ## Strings vs Slices
+	- 
