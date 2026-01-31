@@ -270,4 +270,93 @@
 			  0).map(|x| x * 2).collect();
 		  ```
 - ## Strings vs Slices
-	- 
+	- The `String` type which is provided by Rust's standard library rather than coded into the core language, is a
+		- growable,
+		- mutable,
+		- owned, and
+		- UTF-8 encoded string type.
+	- `Slices` let us reference a contiguous sequence of elements in a collection rather than the whole collection.
+	- A `slice` is a kind of reference, so it does not have ==ownership==.
+- ## Generics
+	- One `fn` definition but two different uses.
+	- ```
+		  fn largest<T: std::cmp::PartialOrd>(a: T, b: T) -> T {
+			  if a > b { a } else { b }
+		  }
+		  
+		  fn main() {
+			  let bigger_number = largest(3, 7);
+			  let bigger_char = largest('a', 'd');
+		  }
+	  ```
+- ## Traits: Defining Shared Behavior
+	- A ***trait*** defines the functionality a particular type has and can share with other types. We can use traits to define shared behavior in an abstract way. We can use ***trait bounds*** to specify that a generic type can be any type that has certain behavior.
+	 **NOTE:** Traits are similar to a feature often called ***interfaces*** in other languages, although with some differences.
+	- **Steps:**
+		- 1.) Defining the trait:
+			- ```
+				  pub trait Summary {
+					  fn summarize(&self) -> String;
+				  }
+			  ```
+		- 2.) Defining the struct:
+			- ```
+				  struct User {
+					  name: String,
+					  age: u32,
+				  }
+			  ```
+		- 3.) Implementing a Trait on the struct
+			- ```
+				  impl Summary for User {
+					  fn summarize(&self) -> String {
+						  return format!("User {} is {} years old", self.name,
+						  self.age);
+					  }
+				  }
+				  
+				  fn main() {
+					  let user = User {
+						  name: String::from("Karan Singh"),
+						  age: 27,
+					  }
+					  
+					  println!("{}", user.summarize());
+				  }
+			  ```
+- ==Question== - Why do we need structs with references to have a lifetime parameter?
+	- So we know how long the `struct` can live.
+- ## Generic Type Parameters, Trait Bounds, and Lifetimes Together
+	- ```
+		  fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann:
+		  T) -> &'a str
+		  where T: Display,
+		  {
+			  println!("Announcement! {ann}");
+			  if x.len() > y.len() {
+				  return x;
+			  } else {
+				  return y;
+			  }
+		  }
+		  
+		  fn main() {
+			  let str1 = String::from("small");
+			  let str2 = String::from("longer");
+			  let ann: String = String::from("Announcing the longest string");
+			  let result = longest_with_an_announcement(&str1, &str2, ann);
+			  println!("Longest string is: {}", result);
+		  }
+	  ```
+- ## Multithreading
+	- Although Rust is multithreaded, but we need to explicitly spawn extra threads.
+	- ```
+		  fn main() {
+			  thread::spawn(|| {
+				  let mut c = 0;
+				  for i in 0..500 {
+					  c = c + 1;
+				  }
+			  });
+		  }
+	  ```
