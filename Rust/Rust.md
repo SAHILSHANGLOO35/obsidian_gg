@@ -360,3 +360,38 @@
 			  });
 		  }
 	  ```
+- ## Moving Variable to spawned thread
+	- This is done so that the spawned thread takes up the ownership of the variable as the thread may continue even after the main ends and then that variable have no existence.
+- ## Message Passing from one thread to another.
+	- We drop this transmitter variable because we don't want the below receiver to wait for the transmitter to send some data, only the producers are sending data.
+		- ```
+			  fn main() {
+				  let (tx, rx) = mpsc::channel();
+				  for i in 0..10 {
+					  let producer = tx.clone();
+					  thread::spawn(move || {
+						  let mut sum: u64 = 0;
+						  for j in i * 10_000_000..((i + 1) * 10_000_000) {
+							  sum = sum + j;
+						  }
+						  producer.send(sum).unwrap();
+					  });
+				  }
+				  drop(tx); // -> We drop this transmitter varible 
+				  because we don't want the below receiver to wait for the
+				  transmitter to send some data, only the producers are sending
+				  data.
+				  
+				  let mut final_sum = 0;
+				  for val in rx {
+					  final_sum = final_sum + val;
+				  }
+				  println!("{final_sum}");
+			  }
+		  ```
+- ## Macros
+	- Macros are code that write other code. This is called `metaprogramming`.
+	- So when we write `println!` which is a macro, then this line of code gets expanded to a lot of lines of code, this similar thing happens when we create vector like the below one.
+		- ```
+			  let v = vec![1, 2, 3];
+		  ```
