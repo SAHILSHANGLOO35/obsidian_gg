@@ -55,6 +55,9 @@
 			  - *This is Ownership and memory safety in Rust.*
 		  - **4.)** **Borrowing and references**
 			  - We can transfer `ownerships` of variables to fns. By passing a **reference** of the string to the function `take_ownership`, the ownership of of the string remains with the original variable, in the `main` function. This allows us to use that variable again after the function call.
+			  - **==Rules==**:
+				  - 1.) We can have multiple mutable references of a variable.
+				  - 2.) If we have one mutable reference then we can't have any other immutable or mutable references.
 			  - Code snippet of ==Borrowing Variable==:
 				  - ```
 					    fn main() {
