@@ -121,7 +121,7 @@
 				  }
 			  }
 		  ```
-	- Here the `(&self)` argument in the function area of `impl Rect` ==refers to the current struct i.e. on which particular struct we are calling the area function on.==
+	- Here the `(&self)` argument in the function area of `impl Rect` ==refers to the current struct i.e. on which particular struct we are calling the area function on.== This is called ***member function***.
 - ## Enums
 	- Enums let us **enumerate** over various types of a value.
 	- For example - Shapes, Directions etc.
