@@ -62,5 +62,5 @@
 	- However when we use routing in SPA we don't have to reload everytime, we can just use JS to switch between pages.
 	- To do this, React Router provides us a element called (<Link />) => helps us to go to another page without reloading.
 
-==<StrictMode> is used in development only and logs twice to help us catch bugs.==
+==`StrictMode` is used in development only and logs twice to help us catch bugs.==
 
