@@ -29,4 +29,4 @@
 				- But in Next.js, we create file based routing system which means the routing is handled by the file system. Each folder in the `app directory` becomes a route and the folder name becomes the routes path. For example - `/blog`, `/about`, `/profile`, `/services` as - `http://localhost:3000/about`.
 					 ![[Pasted image 20260202193942.png]]
 			- ##### 3.) Fullstack
-				- `API routes` 
+				- `API routes` --> Enabling the creation of serverless functions to handle API requests.
