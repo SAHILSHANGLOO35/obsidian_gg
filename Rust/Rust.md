@@ -476,7 +476,7 @@ We drop this transmitter variable because we don't want the below receiver to wa
 
 ```rust
 fn main() {
-    let (tx, rx) = mpsc::channel();
+		let (tx, rx) = mpsc::channel();
     for i in 0..10 {
         let producer = tx.clone();
         thread::spawn(move || {
@@ -502,7 +502,7 @@ fn main() {
 
 ## Macros
 
-Macros are code that write other code. This is called `metaprogramming`.
+Macros are code that write other code. This is called `metaprogramming` by enabling the generation of code at compile-time.
 
 So when we write `println!` which is a macro, then this line of code gets expanded to a lot of lines of code, this similar thing happens when we create vector like the below one.
 
@@ -510,5 +510,44 @@ So when we write `println!` which is a macro, then this line of code gets expand
 let v = vec![1, 2, 3];
 ```
 
-## Annotations & Decorators
+## Debug Macro and Trait implementation
 
+```Rust
+use std::fmt::{Debug, Display};
+#[derive(Debug)] // --> This is the Debug macro -> This expannds the code
+struct User {
+    username: String,
+    age: u32,
+}
+
+impl Display for User {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "This is the user struct with age {}", self.age)
+    }
+}
+
+// This is the Debug trait
+// impl Debug for User {
+//     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+//         write!(
+//             f,
+//             "This is the user struct with name {} and age {}",
+//             self.username, self.age
+//         )
+//     }
+// }
+
+fn main() {
+    let user = User {
+        username: String::from("Sahil Shangloo"),
+        age: 22,
+    };
+    
+    println!("{}", user.username);
+    println!("{}", user.age);
+    println!("{}", user); // Display
+    println!("{:?}", user); // Debug
+}
+```
+
+##### Note: `Numbers` have `copy` trait while `Strings`, `Hashmaps`, `Vectors` doesn't. Therefore Numbers are stored in `Stack` while others in `Heap`.
