@@ -1,1 +1,0 @@
-The Journey to Obsidian begins! GG

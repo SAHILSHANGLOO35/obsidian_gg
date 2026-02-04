@@ -1,7 +1,0 @@
-- ### **Definition**
-	- A high-level JavaScript library for creating and displaying 3D graphics in web browsers.
-- ### Purpose
-	- Simplifies 3D graphics creation and animation (models, particle system, lights, cameras) without low-level **WebGL** (Web Graphics Library) code knowledge.
-- ### Graphics Processing
-	- What is graphics processing?
-		- 
