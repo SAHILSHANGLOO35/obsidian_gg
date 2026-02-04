@@ -3,8 +3,6 @@
 - **Babel** is a JavaScript compiler.
 - It translates other JavaScript-like languages (such as JSX) into plain **JavaScript**, which browsers understand.
 
----
-
 ## 2. Why do we need Babel?
 
 - When using **React**, we don’t write plain JavaScript only.
@@ -16,8 +14,6 @@ Example:
 ```jsx
 const element = <h1>Hello World</h1>;
 ```
-
----
 
 ## 3. Problem with JSX
 
@@ -43,19 +39,13 @@ We use an external JavaScript library called **Babel**.
 <script type="text/babel"></script>
 ```
 
----
-
 > **React = an external library that helps us create websites more easily.**
-
----
 
 ## 4. How React helps us create websites easier
 
 - More natural way to write UI
 - Easier error detection
 - Allows inserting JavaScript directly inside UI elements
-
----
 
 ## 5. State
 
@@ -70,8 +60,6 @@ We use an external JavaScript library called **Babel**.
 	2. **Updater function** → `array[1]`
 - React updates the UI **only when the updater function is used**.
 
----
-
 ## Spread Operator (`...`) in JavaScript
 
 - It copies values from an existing array/object into a new one.
@@ -82,25 +70,17 @@ Example:
 const newArray = [...oldArray];
 ```
 
----
-
 ## `onChange`
 
 - Runs a function when the value of an `<input>` element changes.
-
----
 
 ## CSS Tip
 
 - By default, the `<body>` element has **8px margin** on all sides.
 
----
-
 ## 6. Hooks
 
 - **Hooks** allow us to use React features inside functional components.
-
----
 
 ### `useEffect`
 
@@ -117,8 +97,6 @@ useEffect(() => {
 - `[]` → runs **only once** (after first render)
 - `[chatMessages]` → runs **every time `chatMessages` changes**
 
----
-
 ### `useRef`
 
 - A **container** with special React behavior.
@@ -132,14 +110,10 @@ useEffect(() => {
 - Storing mutable values
 - Avoiding unnecessary re-renders
 
----
-
 ### Rule of Thumb
 
 - Use `useState` → when data affects rendering
 - Use `useRef` → when data should **not** trigger re-render
-
----
 
 ## SPA Routing & Links
 
@@ -151,8 +125,6 @@ useEffect(() => {
 
 - React Router provides `<Link />` component.
 - `<Link />` navigates between pages **without reloading** the page.
-
----
 
 ## Strict Mode
 
