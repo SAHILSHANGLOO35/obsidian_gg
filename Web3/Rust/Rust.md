@@ -387,7 +387,6 @@ A _**trait**_ defines the functionality a particular type has and can share with
 **NOTE:** Traits are similar to a feature often called _**interfaces**_ in other languages, although with some differences.
 
 **Steps:**
-
 ### 1.) Defining the trait:
 
 ```rust
@@ -425,8 +424,7 @@ fn main() {
 ```
 
 ==Question== - Why do we need structs with references to have a lifetime parameter?
-
-So we know how long the `struct` can live.
+==Answer== - So we know how long the `struct` can live.
 
 ## Generic Type Parameters, Trait Bounds, and Lifetimes Together
 
@@ -551,3 +549,9 @@ fn main() {
 ```
 
 ##### Note: `Numbers` have `copy` trait while `Strings`, `Hashmaps`, `Vectors` doesn't. Therefore Numbers are stored in `Stack` while others in `Heap`.
+
+## Serde
+
+Serde is a `Serialization` and `Deserialization` framework in Rust. It provides a way to convert Rust data structure into different formats (serialization) and vice-versa (deserialization).
+
+The most common use cases involve working with formats like `JSON`, `YAML`, `TOML` and others.
