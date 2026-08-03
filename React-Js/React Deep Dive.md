@@ -58,7 +58,7 @@ Special type of magical function use to perform some specific tasks.
 
 ## useState
 
-useState runs **asynchronously**. That's why if we do some state update and log it, then it will show us the previous value not the latest one in the console, although it will update the UI.
+useState runs **asynchronously**. That's why if we do some state update and log it, then it will show us the previous value not the latest one in the console although it will update the UI.
 
 ### Batching Example
 
